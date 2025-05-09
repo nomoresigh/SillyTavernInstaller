@@ -163,12 +163,12 @@ func tryApplyStash(repoPath string) (bool, string) {
 	fmt.Println("저장된 로컬 변경사항(stash) 자동 복원 시도 (git stash pop)...")
 	// git stash pop 실행, 표준 출력과 표준 에러를 함께 캡처
 	cmd := exec.Command("git", "-C", repoPath, "stash", "pop")
-	var out<y_bin_441> bytes.Buffer
-	cmd.Stdout = &out<y_bin_441>
-	cmd.Stderr = &out<y_bin_441>
+	var outBuffer bytes.Buffer
+	cmd.Stdout = &outBuffer
+	cmd.Stderr = &outBuffer
 
 	err = cmd.Run()
-	output := out<y_bin_441>.String()
+	output := outBuffer.String()
 
 	if err != nil {
 		// "git stash pop" 실패 (대부분 충돌 때문)
